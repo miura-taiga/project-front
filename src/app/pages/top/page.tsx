@@ -1,113 +1,201 @@
-import Image from "next/image";
+// 'use client';
 
-export default function Home() {
+// import React, { useState } from 'react';
+// import Link from 'next/link';
+
+// export default function Home() {
+//   // 背景画像のURL
+//   const backgroundImage = "https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3825274/df8dd506-758c-8e8d-b8d6-c9dcd52a8f67.png";
+
+//   // 仮のログイン状態（実際のアプリではAPIなどから取得する）
+//   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+//   return (
+//     <>
+//       {/* ヘッダー */}
+//       <header className="bg-black bg-opacity-70 text-white py-4 md:py-5 px-5 md:px-10 flex justify-between items-center backdrop-blur-md fixed w-full z-50 shadow-lg">
+//         <nav className="flex gap-4">
+//           <Link href="/top" legacyBehavior>
+//             <a className="text-lg md:text-xl font-semibold text-white bg-transparent hover:bg-white hover:bg-opacity-20 px-3 md:px-4 py-2 rounded-md transition duration-300 shadow-lg">
+//               RUNTEQ LOVE
+//             </a>
+//           </Link>
+//         </nav>
+//         <nav className="flex gap-4">
+//           {!isLoggedIn ? (
+//             <Link href="/login" legacyBehavior>
+//               <a className="text-lg md:text-xl font-semibold text-white bg-transparent hover:bg-white hover:bg-opacity-20 px-3 md:px-4 py-2 rounded-md transition duration-300 shadow-lg">
+//                 ログイン
+//               </a>
+//             </Link>
+//           ) : (
+//             <Link href="/matchings/start" legacyBehavior>
+//               <a className="text-lg md:text-xl font-semibold text-white bg-transparent hover:bg-white hover:bg-opacity-20 px-3 md:px-4 py-2 rounded-md transition duration-300 shadow-lg">
+//                 マッチング
+//               </a>
+//             </Link>
+//           )}
+//         </nav>
+//       </header>
+
+//       {/* メインセクション */}
+//       <main
+//         className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center text-white p-4 pt-20 md:pt-24"
+//         style={{ backgroundImage: `url(${backgroundImage})` }}
+//       >
+//         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+//         <div className="relative z-10 mt-20 mb-auto text-center">
+//           <h1 className="text-4xl md:text-6xl font-bold text-shadow-lg">
+//             Welcome to RUNTEQ LOVE
+//           </h1>
+//         </div>
+
+//         <div className="relative z-10 mt-auto mb-20 text-center">
+//           <p className="text-lg md:text-xl mb-10 md:mb-20 text-shadow-md">
+//             RUNTEQ LOVEへようこそ!
+//             <br />
+//             恋愛に悩んでるそこのあなた!プログラミングだけじゃ満足できない？
+//             <br />
+//             そんなあなたにピッタリのアプリがここにあります。
+//             <br />
+//             RUNTEQ LOVEは、RUNTEQ内で結婚相手を見つけるマッチングサイトとなっています。
+//             <br />
+//             理想の結婚相手を見つけて周りと差をつけましょう!
+//             <br />
+//             さあ、エラーメッセージばかり見てないで、素敵な出会いを見つけましょう！
+//             <br />
+//             あなたのコードを見ただけでドキドキする相手がいるかもしれません。
+//             <br />
+//             コンソールログに幸せのメッセージを表示させましょう！
+//             <br />
+//             もしかしたら、あなたのエラーログを一緒にデバッグしてくれるパートナーが見つかるかも。
+//             <br />
+//             バグフィックスだけじゃなく、愛もフィックスしちゃいましょう！
+//             <br />
+//             RUNTEQ LOVEで、あなたの人生のプルリクエストを送りましょう!
+//             <br />
+//           </p>
+//           <div className="flex flex-col md:flex-row justify-center gap-4 mb-20">
+//             {isLoggedIn && (
+//               <Link href="/matchings/start" legacyBehavior>
+//                 <a className="text-white bg-pink-500 hover:bg-pink-700 transition duration-300 px-8 py-4 rounded-md shadow-md text-lg w-full md:w-[200px] h-[60px] flex items-center justify-center">
+//                   マッチングする
+//                 </a>
+//               </Link>
+//             )}
+//             {!isLoggedIn && (
+//               <Link href="/login" legacyBehavior>
+//                 <a className="text-white bg-blue-500 hover:bg-blue-700 transition duration-300 px-8 py-4 rounded-md shadow-md text-lg w-full md:w-[200px] h-[60px] flex items-center justify-center">
+//                   ログインする
+//                 </a>
+//               </Link>
+//             )}
+//           </div>
+//         </div>
+//       </main>
+
+//       {/* フッター */}
+//       <footer className="bg-black bg-opacity-70 text-white py-4 px-10 flex justify-center items-center backdrop-blur-md fixed bottom-0 w-full shadow-lg">
+//         <p className="text-shadow-md text-sm md:text-base">&copy; 2024 RUNTEQ LOVE. All rights reserved.</p>
+//       </footer>
+//     </>
+//   );
+// }
+
+"use client";
+
+import React, { useEffect } from "react";
+import Link from "next/link";
+import { RecoilRoot, useRecoilState } from "recoil";
+import * as Components from "@/features/components";
+import { loggedInState } from "@/atoms";
+
+const MainContent: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState);
+
+  useEffect(() => {
+    // 仮のログイン状態を設定
+    // 実際のアプリではAPIなどから取得する
+    setIsLoggedIn(false);
+  }, [setIsLoggedIn]);
+
+  // 背景画像のURL
+  const backgroundImage =
+    "https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3825274/df8dd506-758c-8e8d-b8d6-c9dcd52a8f67.png";
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <Components.Headers />
+
+      <main
+        className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center text-white p-4 pt-20 md:pt-24"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+        <div className="relative z-10 mt-20 mb-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-shadow-lg">
+            Welcome to RUNTEQ LOVE
+          </h1>
         </div>
-      </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
+        <div className="relative z-10 mt-auto mb-20 text-center">
+          <p className="text-lg md:text-xl mb-10 md:mb-20 text-shadow-md">
+            RUNTEQ LOVEへようこそ!
+            <br />
+            恋愛に悩んでるそこのあなた!プログラミングだけじゃ満足できない？
+            <br />
+            そんなあなたにピッタリのアプリがここにあります。
+            <br />
+            RUNTEQ
+            LOVEは、RUNTEQ内で結婚相手を見つけるマッチングサイトとなっています。
+            <br />
+            理想の結婚相手を見つけて周りと差をつけましょう!
+            <br />
+            さあ、エラーメッセージばかり見てないで、素敵な出会いを見つけましょう！
+            <br />
+            あなたのコードを見ただけでドキドキする相手がいるかもしれません。
+            <br />
+            コンソールログに幸せのメッセージを表示させましょう！
+            <br />
+            もしかしたら、あなたのエラーログを一緒にデバッグしてくれるパートナーが見つかるかも。
+            <br />
+            バグフィックスだけじゃなく、愛もフィックスしちゃいましょう！
+            <br />
+            RUNTEQ LOVEで、あなたの人生のプルリクエストを送りましょう!
+            <br />
           </p>
-        </a>
+          <div className="flex flex-col md:flex-row justify-center gap-4 mb-20">
+            {isLoggedIn && (
+              <Link href="/matchings/start" legacyBehavior>
+                <a className="text-white bg-pink-500 hover:bg-pink-700 transition duration-300 px-8 py-4 rounded-md shadow-md text-lg w-full md:w-[200px] h-[60px] flex items-center justify-center">
+                  マッチングする
+                </a>
+              </Link>
+            )}
+            {!isLoggedIn && (
+              <Link href="login" legacyBehavior>
+                <a className="text-white bg-blue-500 hover:bg-blue-700 transition duration-300 px-8 py-4 rounded-md shadow-md text-lg w-full md:w-[200px] h-[60px] flex items-center justify-center">
+                  ログインする
+                </a>
+              </Link>
+            )}
+          </div>
+        </div>
+      </main>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        <Components.Footers />
+    </>
   );
-}
+};
+
+const Page: React.FC = () => {
+  return (
+    <RecoilRoot>
+      <MainContent />
+    </RecoilRoot>
+  );
+};
+
+export default Page;
