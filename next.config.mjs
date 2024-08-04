@@ -4,7 +4,7 @@ const nextConfig = {
       return [
         {
           source: '/',
-          destination: '/top',
+          destination: 'pages/top',
           permanent: true, // 永続的なリダイレクト
         },
       ];
