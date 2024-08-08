@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
-import { loggedInState } from '@/atoms';
+import Link from "next/link";
+import { useRecoilValue } from "recoil";
+import { loggedInState } from "@/atoms";
 
 const Header: React.FC = () => {
   const isLoggedIn = useRecoilValue(loggedInState);
