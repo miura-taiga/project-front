@@ -3,7 +3,6 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { RecoilRoot, useRecoilState } from "recoil";
-import * as Components from "@/features/components";
 import { loggedInState } from "@/atoms";
 
 const MainContent: React.FC = () => {
@@ -21,8 +20,6 @@ const MainContent: React.FC = () => {
 
   return (
     <>
-      <Components.Headers />
-
       <main
         className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center text-white p-4 pt-20 md:pt-24"
         style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -79,18 +76,12 @@ const MainContent: React.FC = () => {
           </div>
         </div>
       </main>
-
-        <Components.Footers />
     </>
   );
 };
 
 const Page: React.FC = () => {
-  return (
-    <RecoilRoot>
-      <MainContent />
-    </RecoilRoot>
-  );
+  return <MainContent />;
 };
 
 export default Page;
